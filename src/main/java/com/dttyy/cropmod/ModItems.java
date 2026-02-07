@@ -1,5 +1,5 @@
 package com.dttyy.cropmod;
-
+import com.dttyy.cropmod.item.ItemCornSeed;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
