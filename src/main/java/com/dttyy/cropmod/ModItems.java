@@ -9,23 +9,31 @@ import com.dttyy.cropmod.block.BlockCropBase;
 import java.util.HashMap;
 import java.util.Map;
 
-@SubscribeEvent
-public static void registerItems(RegistryEvent.Register<Item> event) {
-    for (CropType type : CropType.values()) {
-        BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
+@Mod.EventBusSubscriber(modid = CropMod.MODID)
+public class ModItems {   // ← 必须有类声明
 
-        Item seed = new ItemCornSeed(cropBlock)
-            .setRegistryName("cropmod", type.getName() + "_seed")
-            .setTranslationKey("cropmod." + type.getName() + "_seed");
+    public static final Map<String, Item> SEEDS = new HashMap<>();
+    public static final Map<String, Item> CROPS = new HashMap<>();
 
-        Item cropItem = new Item()
-            .setRegistryName("cropmod", type.getName())
-            .setTranslationKey("cropmod." + type.getName());
+    @SubscribeEvent
+    public static void registerItems(RegistryEvent.Register<Item> event) {
+        for (CropType type : CropType.values()) {
 
-        SEEDS.put(type.getName(), seed);
-        CROPS.put(type.getName(), cropItem);
+            BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
-        event.getRegistry().register(seed);
-        event.getRegistry().register(cropItem);
+            Item seed = new ItemCornSeed(cropBlock)
+                .setRegistryName(CropMod.MODID, type.getName() + "_seed")
+                .setTranslationKey(CropMod.MODID + "." + type.getName() + "_seed");
+
+            Item cropItem = new Item()
+                .setRegistryName(CropMod.MODID, type.getName())
+                .setTranslationKey(CropMod.MODID + "." + type.getName());
+
+            SEEDS.put(type.getName(), seed);
+            CROPS.put(type.getName(), cropItem);
+
+            event.getRegistry().register(seed);
+            event.getRegistry().register(cropItem);
+        }
     }
 }
