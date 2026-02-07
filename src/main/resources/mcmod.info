@@ -1,0 +1,14 @@
+[
+  {
+    "modid": "cropmod",
+    "name": "Crop Mod",
+    "description": "A custom crop mod",
+    "version": "1.0.0",
+    "credits": "",
+    "authors": ["YourName"],
+    "url": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
