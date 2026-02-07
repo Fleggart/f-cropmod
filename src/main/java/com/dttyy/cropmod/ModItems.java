@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @EventBusSubscriber(modid = "cropmod")
 public class ModItems {
 
-    public static Item cornSeed;
+    public static ItemCornSeed cornSeed;
     public static Item corn;
 
     @SubscribeEvent
@@ -17,7 +17,7 @@ public class ModItems {
                 .setRegistryName("cropmod", "corn_seed")
                 .setTranslationKey("cropmod.corn_seed");
 
-        corn = new Item()
+        cornSeed = new ItemCornSeed();
                 .setRegistryName("cropmod", "corn")
                 .setTranslationKey("cropmod.corn");
 
