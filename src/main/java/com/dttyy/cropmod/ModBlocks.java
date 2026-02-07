@@ -1,25 +1,19 @@
-package com.dttyy.cropmod;
+@SubscribeEvent
+public static void registerItems(RegistryEvent.Register<Item> event) {
 
-import net.minecraft.block.Block;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.dttyy.cropmod.block.BlockCropBase;
-import java.util.HashMap;
-import java.util.Map;
+    for (CropType type : CropType.values()) {
+        BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
-@EventBusSubscriber(modid = CropMod.MODID)
-public class ModBlocks {
-    
-    public static final Map<String, BlockCropBase> CROPS = new HashMap<>();
+        Item seed = new ItemCornSeed(cropBlock);
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event) {
+        Item cropItem = new Item()
+            .setRegistryName("cropmod", type.getName())
+            .setTranslationKey("cropmod." + type.getName());
 
-        for (CropType type : CropType.values()) {
-            BlockCropBase crop = new BlockCropBase(type.getName());
-            CROPS.put(type.getName(), crop);
-            event.getRegistry().register(crop);
-        }
+        SEEDS.put(type.getName(), seed);
+        CROPS.put(type.getName(), cropItem);
+
+        event.getRegistry().register(seed);
+        event.getRegistry().register(cropItem);
     }
 }
