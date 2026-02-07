@@ -9,25 +9,23 @@ import com.dttyy.cropmod.block.BlockCropBase;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mod.EventBusSubscriber(modid = CropMod.MODID)
-public class ModItems {
-    public static final Map<String, Item> SEEDS = new HashMap<>();
-    public static final Map<String, Item> CROPS = new HashMap<>();
+@SubscribeEvent
+public static void registerItems(RegistryEvent.Register<Item> event) {
+    for (CropType type : CropType.values()) {
+        BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
-        for (CropType type : CropType.values()) {
-            BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
-            Item seed = new ItemCornSeed(cropBlock);
-            Item cropItem = new Item()
-                .setRegistryName("cropmod", type.getName())
-                .setTranslationKey("cropmod." + type.getName());
+        Item seed = new ItemCornSeed(cropBlock)
+            .setRegistryName("cropmod", type.getName() + "_seed")
+            .setTranslationKey("cropmod." + type.getName() + "_seed");
 
-            SEEDS.put(type.getName(), seed);
-            CROPS.put(type.getName(), cropItem);
+        Item cropItem = new Item()
+            .setRegistryName("cropmod", type.getName())
+            .setTranslationKey("cropmod." + type.getName());
 
-            event.getRegistry().register(seed);
-            event.getRegistry().register(cropItem);
-        }
+        SEEDS.put(type.getName(), seed);
+        CROPS.put(type.getName(), cropItem);
+
+        event.getRegistry().register(seed);
+        event.getRegistry().register(cropItem);
     }
 }
