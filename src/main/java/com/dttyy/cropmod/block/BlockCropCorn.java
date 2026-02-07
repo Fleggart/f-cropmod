@@ -13,11 +13,11 @@ public class BlockCropCorn extends BlockCrops {
 
     @Override
     protected Item getSeed() {
-        return ModItems.cornSeed;
+        return ModItems.CORN_SEED;
     }
 
     @Override
     protected Item getCrop() {
-        return ModItems.corn;
+        return ModItems.CORN;
     }
 }
