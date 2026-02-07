@@ -7,12 +7,12 @@ version = '1.0.0'
 
 repositories {
     mavenCentral()
-    // 加上 Cleanroom Loader 的 Maven 仓库
+    // 这里填 Cleanroom Mod API 仓库
     maven { url 'https://maven.cleanroom.io/' }
 }
 
 dependencies {
-    implementation 'com.cleanroom.loader:cleanroom-loader-api:1.0.0' // 假设版本
+    implementation 'com.cleanroom.mod:api:1.0.0' // 假设版本
 }
 
 java {
