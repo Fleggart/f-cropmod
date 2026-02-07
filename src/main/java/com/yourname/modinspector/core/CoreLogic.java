@@ -3,21 +3,13 @@ package com.yourname.modinspector.core;
 import java.io.*;
 import java.nio.file.*;
 import java.util.jar.*;
-import java.util.zip.*;
-import java.util.*;
-import org.json.*; // 需要 json 库，例如 org.json:json
 
 public final class CoreLogic {
-
-    // 常见开源许可证白名单
-    private static final List<String> OPEN_SOURCE_LICENSES = Arrays.asList(
-        "MIT", "Apache", "GPL", "BSD"
-    );
 
     public static void run() {
         System.out.println("Core logic executed!");
 
-        Path modsDir = Paths.get("mods"); // 可以改成你 mods 文件夹路径
+        Path modsDir = Paths.get("mods"); // 修改为你的 mods 文件夹路径
         if (!Files.exists(modsDir) || !Files.isDirectory(modsDir)) {
             System.out.println("mods directory not found: " + modsDir.toAbsolutePath());
             return;
@@ -36,59 +28,59 @@ public final class CoreLogic {
         System.out.println("\nScanning mod: " + jarPath.getFileName());
 
         try (JarFile jar = new JarFile(jarPath.toFile())) {
-            // 1. 检查 Forge mods.toml
+            // 1. 读取 Forge mods.toml
             JarEntry tomlEntry = jar.getJarEntry("META-INF/mods.toml");
             if (tomlEntry != null) {
                 try (InputStream in = jar.getInputStream(tomlEntry);
                      BufferedReader reader = new BufferedReader(new InputStreamReader(in))) {
+
                     String line;
+                    String modid = "";
+                    String name = "";
+                    String version = "";
+                    String license = "";
+
                     while ((line = reader.readLine()) != null) {
+                        line = line.trim();
                         if (line.startsWith("modid")) {
-                            System.out.println(line.trim());
+                            modid = line.split("=")[1].replace("\"","").trim();
                         } else if (line.startsWith("name")) {
-                            System.out.println(line.trim());
+                            name = line.split("=")[1].replace("\"","").trim();
+                        } else if (line.startsWith("version")) {
+                            version = line.split("=")[1].replace("\"","").trim();
                         } else if (line.startsWith("license")) {
-                            String license = line.split("=")[1].replace("\"","").trim();
-                            System.out.println("license: " + license);
-                            checkOpenSource(license);
+                            license = line.split("=")[1].replace("\"","").trim();
                         }
                     }
-                }
-            }
 
-            // 2. 检查 Fabric mod json
-            JarEntry jsonEntry = jar.getJarEntry("fabric.mod.json");
-            if (jsonEntry != null) {
-                try (InputStream in = jar.getInputStream(jsonEntry)) {
-                    String content = new String(in.readAllBytes());
-                    JSONObject obj = new JSONObject(content);
-                    String id = obj.optString("id");
-                    String name = obj.optString("name");
-                    String license = obj.optString("license");
-                    System.out.println("id: " + id);
+                    System.out.println("modid: " + modid);
                     System.out.println("name: " + name);
-                    if (!license.isEmpty()) {
-                        System.out.println("license: " + license);
-                        checkOpenSource(license);
-                    }
+                    System.out.println("version: " + version);
+                    System.out.println("license: " + license);
+
+                    checkOpenSource(license);
                 }
             }
 
-            // 3. 可以扩展 mcmod.info 等老格式
+            // 可以扩展 mcmod.info 等老版本 TOML 或 JSON，方法类似
 
-        } catch (IOException | JSONException e) {
+        } catch (IOException e) {
             System.out.println("Failed to read jar: " + jarPath.getFileName());
             e.printStackTrace();
         }
     }
 
     private static void checkOpenSource(String license) {
-        for (String open : OPEN_SOURCE_LICENSES) {
-            if (license.toUpperCase().contains(open.toUpperCase())) {
-                System.out.println("This mod appears to be open source (" + open + ")");
-                return;
-            }
+        if (license == null || license.isEmpty()) {
+            System.out.println("License unknown");
+            return;
         }
-        System.out.println("This mod license is unknown or proprietary");
+
+        String upper = license.toUpperCase();
+        if (upper.contains("MIT") || upper.contains("GPL") || upper.contains("APACHE") || upper.contains("BSD")) {
+            System.out.println("This mod appears to be open source: " + license);
+        } else {
+            System.out.println("This mod license is proprietary or unknown: " + license);
+        }
     }
 }
