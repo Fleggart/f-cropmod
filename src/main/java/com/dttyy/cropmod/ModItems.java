@@ -6,46 +6,44 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.dttyy.cropmod.item.ItemCornSeed;
 import com.dttyy.cropmod.block.BlockCropBase;
-
+import com.dttyy.cropmod.item.ItemCornSeed;
 import java.util.HashMap;
 import java.util.Map;
 
 @Mod.EventBusSubscriber(modid = CropMod.MODID)
 public class ModItems {
     public static final Map<String, Item> SEEDS = new HashMap<>();
-    public static final Map<String, Item> CROPS = new HashMap<>();
-
-    // 默认食物恢复值（统一）
-    private static final int DEFAULT_HUNGER = 4;
-    private static final float DEFAULT_SATURATION = 0.6F;
+    public static final Map<String, ItemFood> FOODS = new HashMap<>();
+    public static final Map<String, Item> NORMALS = new HashMap<>();
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         for (CropType type : CropType.values()) {
             BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
-            // 注册种子
+            // 种子
             Item seed = new ItemCornSeed(cropBlock)
                 .setRegistryName(CropMod.MODID, type.getName() + "_seed")
                 .setTranslationKey(CropMod.MODID + "." + type.getName() + "_seed");
             SEEDS.put(type.getName(), seed);
             event.getRegistry().register(seed);
 
-            // 决定饥饿/饱和度是 enum 给的还是默认
-            int hunger = type.hasCustomFood() ? type.getHunger() : DEFAULT_HUNGER;
-            float saturation = type.hasCustomFood() ? type.getSaturation() : DEFAULT_SATURATION;
+            // 可食用果实
+            ItemFood food = new ItemFood(type.getHunger(), type.getSaturation(), false);
+            food.setRegistryName(CropMod.MODID, type.getName() + "_food");
+            food.setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
+            FOODS.put(type.getName(), food);
+            event.getRegistry().register(food);
 
-            // 成熟物品（可吃）
-            ItemFood cropFood = new ItemFood(hunger, saturation, false)
-                .setRegistryName(CropMod.MODID, type.getName())
-                .setTranslationKey(CropMod.MODID + "." + type.getName());
+            // 普通果实（材料/工具用途）
+            Item normal = new Item()
+                .setRegistryName(CropMod.MODID, type.getName() + "_item")
+                .setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
+            NORMALS.put(type.getName(), normal);
+            event.getRegistry().register(normal);
 
-            CROPS.put(type.getName(), cropFood);
-            event.getRegistry().register(cropFood);
-
-            // 注册作物方块对应的 ItemBlock
+            // 注册 ItemBlock 使作物方块显示正常
             event.getRegistry().register(new ItemBlock(cropBlock)
                 .setRegistryName(cropBlock.getRegistryName()));
         }
