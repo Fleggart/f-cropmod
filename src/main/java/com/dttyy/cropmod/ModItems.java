@@ -35,18 +35,16 @@ public class ModItems {
             SEEDS.put(type.getName(), seed);
             event.getRegistry().register(seed);
 
-            // 食物型果实
-            if (type.hasFood()) {
-                ItemFood foodItem = new CropFoodItem(type.getName(), type.getName() + "_food")
-                    .setRegistryName(CropMod.MODID, type.getName() + "_food")
-                    .setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
-                FOODS.put(type.getName(), foodItem);
-                event.getRegistry().register(foodItem);
-            }
+            // 可食用果实
+            ItemFood foodItem = new CropFoodItem(type.getHunger(), type.getSaturation(), false)
+                .setRegistryName(CropMod.MODID, type.getName() + "_food")
+                .setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
+            FOODS.put(type.getName(), foodItem);
+            event.getRegistry().register(foodItem);
 
-            // 普通材料类型物品
+            // 普通材料
             if (type.hasMaterial()) {
-                Item materialItem = new CropMaterialItem(type.getName() + "_item")
+                Item materialItem = new CropMaterialItem()
                     .setRegistryName(CropMod.MODID, type.getName() + "_item")
                     .setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
                 MATERIALS.put(type.getName(), materialItem);
