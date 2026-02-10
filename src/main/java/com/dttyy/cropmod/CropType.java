@@ -3,7 +3,7 @@ package com.dttyy.cropmod;
 public enum CropType {
 
     TOMATO("tomato", 5, 0.8f, false),
-    ASPARAGIS("Asparagus", 3, 0.6f, false);
+    asparagus("asparagus", 3, 0.6f, false);
     
     private final String name;
     private final int hunger;
