@@ -2,8 +2,9 @@ package com.dttyy.cropmod;
 
 public enum CropType {
 
-    asparagus("asparagus", 3, 0.6f, false);
-    
+    TOMATO("tomato", 5, 0.8f, true),
+    ASPARAGUS("asparagus", 3, 0.6f, true);
+
     private final String name;
     private final int hunger;
     private final float saturation;
