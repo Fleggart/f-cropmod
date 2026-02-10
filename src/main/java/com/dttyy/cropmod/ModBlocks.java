@@ -1,10 +1,10 @@
 package com.dttyy.cropmod;
 
+import com.dttyy.cropmod.block.BlockCropBase;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.dttyy.cropmod.block.BlockCropBase;
 
 import java.util.HashMap;
 import java.util.Map;
