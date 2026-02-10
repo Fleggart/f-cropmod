@@ -1,15 +1,15 @@
 package com.dttyy.cropmod;
 
+import com.dttyy.cropmod.block.BlockCropBase;
+import com.dttyy.cropmod.item.CropFoodItem;
+import com.dttyy.cropmod.item.CropMaterialItem;
+import com.dttyy.cropmod.item.CropSeedItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemFood;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import com.dttyy.cropmod.block.BlockCropBase;
-import com.dttyy.cropmod.item.CropSeedItem;
-import com.dttyy.cropmod.item.CropFoodItem;
-import com.dttyy.cropmod.item.CropMaterialItem;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,9 +23,7 @@ public class ModItems {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
-
         for (CropType type : CropType.values()) {
-
             BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
             CropSeedItem seed = new CropSeedItem(cropBlock);
@@ -34,24 +32,23 @@ public class ModItems {
             SEEDS.put(type.getName(), seed);
             event.getRegistry().register(seed);
 
-            CropFoodItem foodItem =
-                    new CropFoodItem(type.getHunger(), type.getSaturation(), false);
+            CropFoodItem foodItem = new CropFoodItem(type.getHunger(), type.getSaturation(), false);
             foodItem.setRegistryName(CropMod.MODID, type.getName() + "_food");
             foodItem.setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
             FOODS.put(type.getName(), foodItem);
             event.getRegistry().register(foodItem);
 
             if (type.hasMaterial()) {
-                CropMaterialItem matItem = new CropMaterialItem();
-                matItem.setRegistryName(CropMod.MODID, type.getName() + "_item");
-                matItem.setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
-                MATERIALS.put(type.getName(), matItem);
-                event.getRegistry().register(matItem);
+                CropMaterialItem item = new CropMaterialItem();
+                item.setRegistryName(CropMod.MODID, type.getName() + "_item");
+                item.setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
+                MATERIALS.put(type.getName(), item);
+                event.getRegistry().register(item);
             }
 
-            ItemBlock itemBlock = new ItemBlock(cropBlock);
-            itemBlock.setRegistryName(cropBlock.getRegistryName());
-            event.getRegistry().register(itemBlock);
+            ItemBlock ib = new ItemBlock(cropBlock);
+            ib.setRegistryName(cropBlock.getRegistryName());
+            event.getRegistry().register(ib);
         }
     }
 }
