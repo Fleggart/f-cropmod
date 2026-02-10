@@ -2,10 +2,8 @@ package com.dttyy.cropmod;
 
 public enum CropType {
 
-    CORN("corn", 4, 0.6f, true),
     TOMATO("tomato", 5, 0.8f, false),
-    CARROT("carrot", 3, 0.6f, true),
-    ASPARAGIS("Asparagus", 3, 0.6f, true);
+    ASPARAGIS("Asparagus", 3, 0.6f, false);
     
     private final String name;
     private final int hunger;
