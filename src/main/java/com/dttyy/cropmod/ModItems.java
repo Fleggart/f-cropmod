@@ -29,31 +29,33 @@ public class ModItems {
             BlockCropBase cropBlock = ModBlocks.CROPS.get(type.getName());
 
             // 种子
-            Item seed = new CropSeedItem(cropBlock)
-                .setRegistryName(CropMod.MODID, type.getName() + "_seed")
-                .setTranslationKey(CropMod.MODID + "." + type.getName() + "_seed");
+            CropSeedItem seed = new CropSeedItem(cropBlock);
+            seed.setRegistryName(CropMod.MODID, type.getName() + "_seed");
+            seed.setTranslationKey(CropMod.MODID + "." + type.getName() + "_seed");
             SEEDS.put(type.getName(), seed);
             event.getRegistry().register(seed);
 
-            // 可食用果实
-            ItemFood foodItem = new CropFoodItem(type.getHunger(), type.getSaturation(), false)
-                .setRegistryName(CropMod.MODID, type.getName() + "_food")
-                .setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
+            // 食物
+            CropFoodItem foodItem =
+                    new CropFoodItem(type.getHunger(), type.getSaturation(), false);
+            foodItem.setRegistryName(CropMod.MODID, type.getName() + "_food");
+            foodItem.setTranslationKey(CropMod.MODID + "." + type.getName() + "_food");
             FOODS.put(type.getName(), foodItem);
             event.getRegistry().register(foodItem);
 
-            // 普通材料
+            // 普通材料（如需要）
             if (type.hasMaterial()) {
-                Item materialItem = new CropMaterialItem()
-                    .setRegistryName(CropMod.MODID, type.getName() + "_item")
-                    .setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
-                MATERIALS.put(type.getName(), materialItem);
-                event.getRegistry().register(materialItem);
+                CropMaterialItem matItem = new CropMaterialItem();
+                matItem.setRegistryName(CropMod.MODID, type.getName() + "_item");
+                matItem.setTranslationKey(CropMod.MODID + "." + type.getName() + "_item");
+                MATERIALS.put(type.getName(), matItem);
+                event.getRegistry().register(matItem);
             }
 
-            // 注册方块对应的 ItemBlock
-            event.getRegistry().register(new ItemBlock(cropBlock)
-                .setRegistryName(cropBlock.getRegistryName()));
+            // 作物方块对应的 ItemBlock
+            ItemBlock itemBlock = new ItemBlock(cropBlock);
+            itemBlock.setRegistryName(cropBlock.getRegistryName());
+            event.getRegistry().register(itemBlock);
         }
     }
 }
