@@ -12,6 +12,5 @@ public class CropMod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        // 不在这里注册模型
     }
 }
