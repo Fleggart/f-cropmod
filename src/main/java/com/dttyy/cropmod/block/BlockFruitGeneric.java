@@ -7,5 +7,6 @@ public class BlockFruitGeneric extends Block {
 
     public BlockFruitGeneric() {
         super(Material.GOURD);
+        setHardness(1.0f);
     }
 }
