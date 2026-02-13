@@ -2,7 +2,7 @@ package com.dttyy.cropmod.data;
 
 public enum StemCropType {
 
-CORN("corn");
+CORN("corn7");
 
 private final String name;
 
