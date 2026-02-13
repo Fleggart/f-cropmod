@@ -9,6 +9,11 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(modid = ModConstants.MODID, value = Side.CLIENT)
 public class ModelRegistration {
 
+ModelLoader.setCustomModelResourceLocation(
+    seed, 0,
+    new ModelResourceLocation("cropmod:" + type.getName() + "_seed", "inventory")
+);
+    
     @SubscribeEvent
     public static void registerModels(ModelRegistryEvent e) {
     }
