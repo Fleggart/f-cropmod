@@ -1,12 +1,11 @@
 package com.dttyy.cropmod.registry;
 
 import com.dttyy.cropmod.ModConstants;
-import com.dttyy.cropmod.data.CropType;
-import com.dttyy.cropmod.data.StemCropType;
+import com.dttyy.cropmod.data.*;
 import com.dttyy.cropmod.item.*;
+import com.dttyy.cropmod.block.*;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.*;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,34 +14,34 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class ModItems {
 
     @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event) {
+    public static void registerItems(RegistryEvent.Register<Item> e) {
 
         for (CropType type : CropType.values()) {
 
-            CropSeedItem seed = new CropSeedItem(ModBlocks.CROPS.get(type.getName()));
-            seed.setRegistryName(ModConstants.MODID, type.getName() + "_seed");
-            event.getRegistry().register(seed);
+            BlockCropGeneric crop = ModBlocks.CROPS.get(type.getName());
 
-            CropFoodItem food = new CropFoodItem(type.getHunger(), type.getSaturation());
-            food.setRegistryName(ModConstants.MODID, type.getName() + "_food");
-            event.getRegistry().register(food);
+            Item seed = new CropSeedItem(crop)
+                    .setRegistryName(ModConstants.MODID, type.getName() + "_seed");
 
-            event.getRegistry().register(
-                    new ItemBlock(ModBlocks.CROPS.get(type.getName()))
-                            .setRegistryName(ModBlocks.CROPS.get(type.getName()).getRegistryName())
-            );
+            Item food = new ItemFood(3, 0.6f, false)
+                    .setRegistryName(ModConstants.MODID, type.getName());
+
+            crop.setItems(seed, food);
+
+            e.getRegistry().register(seed);
+            e.getRegistry().register(food);
         }
 
         for (StemCropType type : StemCropType.values()) {
 
-            StemSeedItem seed = new StemSeedItem(ModBlocks.STEMS.get(type.getName()));
-            seed.setRegistryName(ModConstants.MODID, type.getName() + "_seed");
-            event.getRegistry().register(seed);
+            BlockStemGeneric stem = ModBlocks.STEMS.get(type.getName());
 
-            event.getRegistry().register(
-                    new ItemBlock(ModBlocks.FRUITS.get(type.getName()))
-                            .setRegistryName(ModBlocks.FRUITS.get(type.getName()).getRegistryName())
-            );
+            Item seed = new StemSeedItem(stem)
+                    .setRegistryName(ModConstants.MODID, type.getName() + "_seed");
+
+            stem.setSeed(seed);
+
+            e.getRegistry().register(seed);
         }
     }
 }
