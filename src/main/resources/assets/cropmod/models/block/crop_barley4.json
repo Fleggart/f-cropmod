@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "cropmod:barley/barley_crop4"
+    "crop": "cropmod:blocks/barley/barley_crop4"
   }
 }
