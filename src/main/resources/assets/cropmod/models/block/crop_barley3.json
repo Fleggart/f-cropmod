@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/crop",
   "textures": {
-    "crop": "cropmod:blocks/barley/stage3"
+    "crop": "cropmod:barley/barley_crop3"
   }
 }
