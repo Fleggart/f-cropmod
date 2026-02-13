@@ -35,6 +35,18 @@ public class ModBlocks {
             FRUITS.put(type.getName(), fruit);
             e.getRegistry().register(fruit);
 
+            CropSeedItem seed = new CropSeedItem(ModBlocks.CROPS.get(type.getName()));
+seed.setRegistryName(ModConstants.MODID, type.getName() + "_seed");
+seed.setTranslationKey(ModConstants.MODID + "." + type.getName() + "_seed");
+event.getRegistry().register(seed);
+SEEDS.put(type.getName(), seed);
+
+            CropFoodItem food = new CropFoodItem(type.getHunger(), type.getSaturation());
+food.setRegistryName(ModConstants.MODID, type.getName() + "_food");
+food.setTranslationKey(ModConstants.MODID + "." + type.getName() + "_food");
+event.getRegistry().register(food);
+FOODS.put(type.getName(), food);
+            
             BlockStemGeneric stem = new BlockStemGeneric(fruit);
             stem.setRegistryName(ModConstants.MODID, type.getName() + "_stem");
             STEMS.put(type.getName(), stem);
