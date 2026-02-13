@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cropmod:crop_rye0"
+    },
+    "age=1": {
+      "model": "cropmod:crop_rye1"
+    },
+    "age=2": {
+      "model": "cropmod:crop_rye2"
+    },
+    "age=3": {
+      "model": "cropmod:crop_rye3"
+    },
+    "age=4": {
+      "model": "cropmod:crop_rye4"
+    },
+    "age=5": {
+      "model": "cropmod:crop_rye5"
+    },
+    "age=6": {
+      "model": "cropmod:crop_rye6"
+    },
+    "age=7": {
+      "model": "cropmod:crop_rye7"
+    }
+  }
+}
