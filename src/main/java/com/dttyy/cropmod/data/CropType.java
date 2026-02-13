@@ -9,30 +9,12 @@ public enum CropType {
     BARLEY("barley", 3, 0.6f, false);
 
     private final String name;
-    private final int hunger;
-    private final float saturation;
-    private final boolean regrowable; // 新增
 
-    CropType(String name, int hunger, float saturation, boolean regrowable) {
+    CropType(String name) {
         this.name = name;
-        this.hunger = hunger;
-        this.saturation = saturation;
-        this.regrowable = regrowable;
     }
 
     public String getName() {
         return name;
-    }
-
-    public int getHunger() {
-        return hunger;
-    }
-
-    public float getSaturation() {
-        return saturation;
-    }
-
-    public boolean isRegrowable() {
-        return regrowable;
     }
 }
