@@ -1,25 +1,27 @@
 package com.dttyy.cropmod.block;
 
+import com.dttyy.cropmod.registry.ModItems;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 
 public class BlockCropGeneric extends BlockCrops {
 
-    private Item seed;
-    private Item crop;
+    private final String name;
 
-    public void setItems(Item seed, Item crop) {
-        this.seed = seed;
-        this.crop = crop;
+    public BlockCropGeneric(String name) {
+        this.name = name;
+
+        setRegistryName("cropmod", "crop_" + name);
+        setTranslationKey("cropmod.crop_" + name);
     }
 
     @Override
     protected Item getSeed() {
-        return seed;
+        return ModItems.SEEDS.get(name);
     }
 
     @Override
     protected Item getCrop() {
-        return crop;
+        return ModItems.FOODS.get(name);
     }
 }
