@@ -1,23 +1,10 @@
-package com.dttyy.cropmod.registry;
-
-import com.dttyy.cropmod.ModConstants;
-import com.dttyy.cropmod.data.CropType;
-import com.dttyy.cropmod.data.StemCropType;
-import com.dttyy.cropmod.item.*;
-import com.dttyy.cropmod.block.*;
-
-import net.minecraft.item.*;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-
 @Mod.EventBusSubscriber(modid = ModConstants.MODID)
 public class ModItems {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> e) {
 
-        // Register normal crop seeds and foods
+        // 普通作物
         for (CropType type : CropType.values()) {
             String name = type.getName();
 
@@ -37,7 +24,7 @@ public class ModItems {
             e.getRegistry().register(cropItem);
         }
 
-        // Register stem crop seeds and fruit item
+        // 藤作物
         for (StemCropType type : StemCropType.values()) {
             String name = type.getName();
 
