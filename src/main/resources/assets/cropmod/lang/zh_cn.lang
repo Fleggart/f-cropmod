@@ -6,9 +6,9 @@ item.cropmod.oat_seed.name=燕麦种子
 item.cropmod.oat_food.name=燕麦
 tile.cropmod.crop_oat.name=燕麦
 
-item.cropmod.Corn_seed.name=玉米种子
-item.cropmod.Corn_food.name=玉米
-tile.cropmod.crop_Corn.name=玉米
+item.cropmod.corn_seed.name=玉米种子
+item.cropmod.corn_food.name=玉米
+tile.cropmod.crop_corn.name=玉米
 
 item.cropmod.rye_seed.name=黑麦种子
 item.cropmod.rye_food.name=黑麦
