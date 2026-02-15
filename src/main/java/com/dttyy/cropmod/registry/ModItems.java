@@ -1,6 +1,6 @@
 package com.dttyy.cropmod.registry;
 
-import com.dttyy.cropmod.ModConstants;
+import com.dttyy.cropmod.CropMod;
 import com.dttyy.cropmod.data.CropType;
 import com.dttyy.cropmod.data.StemCropType;
 import com.dttyy.cropmod.item.CropSeedItem;
@@ -16,44 +16,42 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber(modid = ModConstants.MODID)
+@Mod.EventBusSubscriber(modid = CropMod.MODID)
 public class ModItems {
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> e) {
 
-        // 普通作物
         for (CropType type : CropType.values()) {
             String name = type.getName();
 
             Item seed = new CropSeedItem(ModBlocks.CROPS.get(name));
-            seed.setRegistryName(ModConstants.MODID, name + "_seed");
-            seed.setTranslationKey(ModConstants.MODID + "." + name + "_seed");
+            seed.setRegistryName(CropMod.MODID, name + "_seed");
+            seed.setTranslationKey(CropMod.MODID + "." + name + "_seed");
             e.getRegistry().register(seed);
 
             Item food = new ItemFood(type.getHunger(), type.getSaturation(), false);
-            food.setRegistryName(ModConstants.MODID, name + "_food");
-            food.setTranslationKey(ModConstants.MODID + "." + name + "_food");
+            food.setRegistryName(CropMod.MODID, name + "_food");
+            food.setTranslationKey(CropMod.MODID + "." + name + "_food");
             e.getRegistry().register(food);
 
             ItemBlock cropItem = new ItemBlock(ModBlocks.CROPS.get(name));
             cropItem.setRegistryName(ModBlocks.CROPS.get(name).getRegistryName());
-            cropItem.setTranslationKey(ModConstants.MODID + ".crop_" + name);
+            cropItem.setTranslationKey(CropMod.MODID + ".crop_" + name);
             e.getRegistry().register(cropItem);
         }
 
-        // 藤类作物
         for (StemCropType type : StemCropType.values()) {
             String name = type.getName();
 
             Item stemSeed = new StemSeedItem(ModBlocks.STEMS.get(name));
-            stemSeed.setRegistryName(ModConstants.MODID, name + "_seed");
-            stemSeed.setTranslationKey(ModConstants.MODID + "." + name + "_seed");
+            stemSeed.setRegistryName(CropMod.MODID, name + "_seed");
+            stemSeed.setTranslationKey(CropMod.MODID + "." + name + "_seed");
             e.getRegistry().register(stemSeed);
 
             ItemBlock fruitItem = new ItemBlock(ModBlocks.FRUITS.get(name));
             fruitItem.setRegistryName(ModBlocks.FRUITS.get(name).getRegistryName());
-            fruitItem.setTranslationKey(ModConstants.MODID + "." + name + "_fruit");
+            fruitItem.setTranslationKey(CropMod.MODID + "." + name + "_fruit");
             e.getRegistry().register(fruitItem);
         }
     }
