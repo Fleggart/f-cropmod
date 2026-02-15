@@ -2,9 +2,9 @@ item.cropmod.asparagus_seed.name=芦笋种子
 item.cropmod.asparagus_food.name=芦笋
 tile.cropmod.crop_asparagus.name=芦笋
 
-item.cropmod.Oat_seed.name=燕麦种子
-item.cropmod.Oat_food.name=燕麦
-tile.cropmod.crop_Oat.name=燕麦
+item.cropmod.oat_seed.name=燕麦种子
+item.cropmod.oat_food.name=燕麦
+tile.cropmod.crop_oat.name=燕麦
 
 item.cropmod.Corn_seed.name=玉米种子
 item.cropmod.Corn_food.name=玉米
