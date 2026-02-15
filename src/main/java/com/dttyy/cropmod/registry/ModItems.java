@@ -42,17 +42,23 @@ public class ModItems {
         }
 
         for (StemCropType type : StemCropType.values()) {
-            String name = type.getName();
+    String name = type.getName();
 
-            Item stemSeed = new StemSeedItem(ModBlocks.STEMS.get(name));
-            stemSeed.setRegistryName(CropMod.MODID, name + "_seed");
-            stemSeed.setTranslationKey(CropMod.MODID + "." + name + "_seed");
-            e.getRegistry().register(stemSeed);
+    // 1) 创建并注册种子
+    Item stemSeed = new StemSeedItem(ModBlocks.STEMS.get(name));
+    stemSeed.setRegistryName(CropMod.MODID, name + "_seed");
+    stemSeed.setTranslationKey(CropMod.MODID + "." + name + "_seed");
+    e.getRegistry().register(stemSeed);
 
-            ItemBlock fruitItem = new ItemBlock(ModBlocks.FRUITS.get(name));
-            fruitItem.setRegistryName(ModBlocks.FRUITS.get(name).getRegistryName());
-            fruitItem.setTranslationKey(CropMod.MODID + "." + name + "_fruit");
-            e.getRegistry().register(fruitItem);
+    // 2) 设置茎块的 seed 引用，否则 getSeedItem() 返回 null
+    BlockStemGeneric stemBlock = ModBlocks.STEMS.get(name);
+    stemBlock.setSeed(stemSeed); // ✅ 关键修复
+
+    // 3) 创建并注册果实 ItemBlock
+    ItemBlock fruitItem = new ItemBlock(ModBlocks.FRUITS.get(name));
+    fruitItem.setRegistryName(ModBlocks.FRUITS.get(name).getRegistryName());
+    fruitItem.setTranslationKey(CropMod.MODID + "." + name + "_fruit");
+    e.getRegistry().register(fruitItem);
         }
     }
 }
