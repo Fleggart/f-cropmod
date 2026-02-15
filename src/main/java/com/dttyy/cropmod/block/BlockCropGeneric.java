@@ -1,6 +1,6 @@
 package com.dttyy.cropmod.block;
 
-import com.dttyy.cropmod.ModConstants;
+import com.dttyy.cropmod.CropMod;
 import net.minecraft.block.BlockCrops;
 import net.minecraft.item.Item;
 
