@@ -2,6 +2,7 @@ package com.dttyy.cropmod.data;
 
 public enum StemCropType {
 
+    HAMIMELON("hamimelon"),
     MELON("melon");
 
     private final String name;
