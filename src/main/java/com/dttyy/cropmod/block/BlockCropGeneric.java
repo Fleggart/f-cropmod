@@ -17,11 +17,11 @@ public class BlockCropGeneric extends BlockCrops {
 
     @Override
     protected Item getSeed() {
-        return Item.getByNameOrId(ModConstants.MODID + ":" + name + "_seed");
+        return Item.getByNameOrId(CropMod.MODID + ":" + name + "_seed");
     }
 
     @Override
     protected Item getCrop() {
-        return Item.getByNameOrId(ModConstants.MODID + ":" + name + "_food");
+        return Item.getByNameOrId(CropMod.MODID + ":" + name + "_food");
     }
 }
