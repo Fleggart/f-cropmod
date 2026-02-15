@@ -14,6 +14,6 @@ item.cropmod.rye_seed.name=黑麦种子
 item.cropmod.rye_food.name=黑麦
 tile.cropmod.crop_rye.name=黑麦
 
-item.cropmod.Barley_seed.name=大麦种子
-item.cropmod.Barley_food.name=大麦
-tile.cropmod.crop_Barley.name=大麦
+item.cropmod.barley_seed.name=大麦种子
+item.cropmod.barley_food.name=大麦
+tile.cropmod.crop_barley.name=大麦
