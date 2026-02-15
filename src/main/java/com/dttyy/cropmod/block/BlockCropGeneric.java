@@ -12,7 +12,7 @@ public class BlockCropGeneric extends BlockCrops {
         this.name = name;
 
         // 不要在这里设置 registryName
-        setTranslationKey(ModConstants.MODID + ".crop_" + name);
+        setTranslationKey(CropMod.MODID + ".crop_" + name);
     }
 
     @Override
