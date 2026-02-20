@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "cropmod:crop_cucumber0"
+    },
+    "age=1": {
+      "model": "cropmod:crop_cucumber1"
+    },
+    "age=2": {
+      "model": "cropmod:crop_cucumber1"
+    },
+    "age=3": {
+      "model": "cropmod:crop_cucumber1"
+    },
+    "age=4": {
+      "model": "cropmod:crop_cucumber2"
+    },
+    "age=5": {
+      "model": "cropmod:crop_cucumber2"
+    },
+    "age=6": {
+      "model": "cropmod:crop_cucumber3"
+    },
+    "age=7": {
+      "model": "cropmod:crop_cucumber4"
+    }
+  }
+}
