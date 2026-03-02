@@ -7,6 +7,7 @@ public enum CropType {
     RYE("rye", 3, 0.6f),
     CORN("corn", 3, 0.6f),
     CUCUMBER("cucumber", 3, 0.6f),
+    onion1("White_onion", 3, 0.6f),
     BARLEY("barley", 3, 0.6f);
 
        private final String name;
