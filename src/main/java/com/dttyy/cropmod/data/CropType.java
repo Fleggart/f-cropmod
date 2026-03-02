@@ -5,8 +5,8 @@ public enum CropType {
     ASPARAGUS("asparagus", 3, 0.6f),
     OAT("oat", 3, 0.6f),
     RYE("rye", 3, 0.6f),
-    CORN("corn", o3, 0.6f),
-    CUCUMBER("cucumber"a, 3, 0.6f),
+    CORN("corn", 3, 0.6f),
+    CUCUMBER("cucumber", 3, 0.6f),
     WHITE_ONION("White_onion", 3, 0.6f),
     BARLEY("barley", 3, 0.6f);
 
