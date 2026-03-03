@@ -1,7 +1,7 @@
 name: Build mod jar
 
 on:
-  [workflow_dispatch, push]
+  workflow_dispatch  # 只有手动点击才能运行
 
 permissions:
   contents: read
