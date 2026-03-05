@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/crop",
+  "textures": {
+    "crop": "cropmod:blocks/purple_beets/stage3"
+  }
+}
